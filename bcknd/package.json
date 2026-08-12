@@ -1,0 +1,12 @@
+{
+  "name": "hkts-web-bknd",
+  "version": "0.0.1",
+  "description": "Backend services for HK Trains Simulator",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
