@@ -53,25 +53,27 @@
     </div>
 
     <script>
-        const FIREBASE_URL = "https://firebaseio.com";
+const FIREBASE_URL = "https://hktrainsim-default-rtdb.europe-west1.firebasedatabase.app/playerstats.json";
 
-        function fetchLivePlayers() {
-            fetch(FIREBASE_URL)
-                .then(response => response.json())
-                .then(data => {
-                    if (data && data.playersOnline !== undefined) {
-                        document.getElementById('player-count').textContent = data.playersOnline;
-                    } else {
-                        document.getElementById('player-count').textContent = "0";
-                    }
-                })
-                .catch(error => {
-                    console.error("Error fetching data:", error);
-                    document.getElementById('player-count').textContent = "Error";
-                });
-        }
-        fetchLivePlayers();
-        setInterval(fetchLivePlayers, 5000);
+function fetchLivePlayers() {
+    fetch(FIREBASE_URL)
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.count !== undefined) {
+                document.getElementById('player-count').textContent = data.count;
+            } else {
+                document.getElementById('player-count').textContent = "0";
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching data:", error);
+            document.getElementById('player-count').textContent = "Error";
+        });
+}
+
+fetchLivePlayers();
+setInterval(fetchLivePlayers, 5000); // Обновление каждые 5 секунд
+
     </script>
 </body>
 </html>
