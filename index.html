@@ -44,7 +44,7 @@
 <body>
 
     <div class="container">
-        <h1>hktrainsim test</h1>
+        <h1>hktrainsim test v0.1</h1>
         
         <div class="status-box">
             game online:
@@ -59,8 +59,10 @@ function fetchLivePlayers() {
     fetch(FIREBASE_URL)
         .then(response => response.json())
         .then(data => {
-            if (data && data.count !== undefined) {
+            if (data && typeof data === 'object' && data.count !== undefined) {
                 document.getElementById('player-count').textContent = data.count;
+            } else if (typeof data === 'number') {
+                document.getElementById('player-count').textContent = data;
             } else {
                 document.getElementById('player-count').textContent = "0";
             }
@@ -72,7 +74,8 @@ function fetchLivePlayers() {
 }
 
 fetchLivePlayers();
-setInterval(fetchLivePlayers, 5000); // Обновление каждые 5 секунд
+setInterval(fetchLivePlayers, 10000);
+
 
     </script>
 </body>
